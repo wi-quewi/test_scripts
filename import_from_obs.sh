@@ -60,7 +60,7 @@ obs_download() {
   signature=$(printf '%b' "$string_to_sign" | openssl dgst -sha1 -hmac "$OBS_SK" -binary | base64)
 
   local http_code
-  http_code=$(curl -s -w "%{http_code}" -o "$output_file" \
+  http_code=$(curl -sk -w "%{http_code}" -o "$output_file" \
     -H "Date: ${date_header}" \
     -H "Authorization: AWS ${OBS_AK}:${signature}" \
     "https://${OBS_BUCKET}.${OBS_ENDPOINT}/${object_key}")
