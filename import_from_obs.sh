@@ -24,11 +24,11 @@ OBS_BUCKET="wiener-pro-factbot-obs"
 OBS_PREFIX="ES-Index"
 
 INDICES=(
-  "copilot_glossary_person_20260123"
-  "copilot_glossary_person_acting_en"
-  "copilot_glossary_person_acting_tc"
-  "copilot_glossary_company_en"
-  "copilot_glossary_company_tc"
+  # "copilot_glossary_person_20260123"
+  # "copilot_glossary_person_acting_en"
+  # "copilot_glossary_person_acting_tc"
+  # "copilot_glossary_company_en"
+  # "copilot_glossary_company_tc"
   "wiki_en_passages_20260115"
   "wiki_zh_passages_20260115"
 )
