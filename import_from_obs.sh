@@ -34,7 +34,7 @@ INDICES=(
 )
 
 BULK_BATCH_SIZE=2000
-WORK_DIR="/tmp/es_import_$$"
+WORK_DIR="/data/es_import_$$"
 mkdir -p "$WORK_DIR"
 
 # --- Validate credentials ---
@@ -89,7 +89,7 @@ create_index() {
 
   # Extract settings and mappings from the export
   local body
-  body=$(jq -c ".[\"$index\"] | {settings: .settings.index | {number_of_shards, number_of_replicas, analysis}, mappings: .mappings}" "$mapping_file")
+  body=$(jq -c ".[\"$index\"] | {settings: (.settings.index | {number_of_shards, number_of_replicas} + (if .analysis then {analysis} else {} end)), mappings: .mappings}" "$mapping_file")
 
   local http_code
   http_code=$(curl -s -o /tmp/es_create_resp.json -w "%{http_code}" \
